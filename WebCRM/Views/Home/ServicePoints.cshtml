@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Сервисные центры";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container-fluid">
+
+    <div class="col-md-8">
+
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <td>ID</td>
+                        <td>Название</td>
+                        <td>Адрес</td>
+                        <td>Количество сотрудников</td>
+                        <td>Количество заявок</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var spoint in ViewBag.Spoints)
+                        {
+                    <tr>
+                        <td style="padding:5px">   @spoint.ID  </td>
+                        <td style="padding:5px">   @spoint.Title  </td>
+                        <td style="padding:5px">   @spoint.Adress  </td>
+                        <td style="padding:5px">   @spoint.Operators.Count  </td>
+                        <td style="padding:5px">   @spoint.Applications.Count  </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <form action="/Home/ServicePoints" method="post" style="margin-top:10%">
+            <h3>Регистрация сервисного центра</h3>
+            <div class="form-horizontal">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Название</span>
+                    </div>
+                    <input name="Name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Адрес</span>
+                    </div>
+                    <input name="SecondName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <input type="submit" class="btn-block btn-primary btn-lg btn-block" value="Сохранить" style="margin-top:5%">
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -21,10 +21,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Список заявок", "ApplicationList", "Home")</li>
-                    <li>@Html.ActionLink("Добавить заявку", "About", "Home")</li>
-                    <li>@Html.ActionLink("Добавить работника", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Добавить сервисный центр", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Заявки", "ApplicationList", "Home")</li>
+                    <li>@Html.ActionLink("Сотрудники", "Employees", "Home")</li>
+                    <li>@Html.ActionLink("Сервисные центры", "ServicePoints", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -33,7 +32,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year – Каменск-Шахтинский. Шевцов Е.Р.</p>
         </footer>
     </div>
 

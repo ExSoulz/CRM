@@ -16,7 +16,7 @@ namespace DBLib
                 )
                 //.ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CRMApplication>())
-                .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
+                .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
                 .BuildSessionFactory();
             return sessionFactory.OpenSession();
         }

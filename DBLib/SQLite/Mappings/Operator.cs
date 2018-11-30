@@ -10,6 +10,7 @@ namespace DBLib.SQLite.Mappings
         public virtual string Name { get; set; }
         public virtual string SecondName { get; set; }
         public virtual string FullName { get { return $"{Name} {SecondName}"; } }
+        public virtual ServicePoint ServicePoint { get; set; }
         public virtual ISet<CRMApplication> Applications { get; set; }
     }
 
@@ -21,6 +22,8 @@ namespace DBLib.SQLite.Mappings
             Map(x => x.Name);
             Map(x => x.SecondName);
             HasMany(x => x.Applications)
+                .Cascade.All();
+            HasOne(x => x.ServicePoint)
                 .Cascade.All();
         }
     }
