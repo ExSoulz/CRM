@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM", "CRM\CRM.csproj", "{CE50031D-809A-4EF4-B39F-0565ADF932B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBLib", "DBLib\DBLib.csproj", "{DF7FFBF4-3688-4C9F-8EF3-5891D95DDF78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCRM", "WebCRM\WebCRM.csproj", "{B47A1F52-18F9-49CD-A8EE-815B41B12BF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{CE50031D-809A-4EF4-B39F-0565ADF932B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE50031D-809A-4EF4-B39F-0565ADF932B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE50031D-809A-4EF4-B39F-0565ADF932B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF7FFBF4-3688-4C9F-8EF3-5891D95DDF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF7FFBF4-3688-4C9F-8EF3-5891D95DDF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF7FFBF4-3688-4C9F-8EF3-5891D95DDF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF7FFBF4-3688-4C9F-8EF3-5891D95DDF78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B47A1F52-18F9-49CD-A8EE-815B41B12BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B47A1F52-18F9-49CD-A8EE-815B41B12BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B47A1F52-18F9-49CD-A8EE-815B41B12BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B47A1F52-18F9-49CD-A8EE-815B41B12BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
