@@ -18,6 +18,12 @@ namespace DBLib.SQLite.Mappings
         public virtual Brand Brand { get; set; }
         public virtual string ModelName { get; set; }
         public virtual Model Model { get; set; }
+        public virtual string Status { get; set; }
+
+        public CRMApplication()
+        {
+            Status = "Обработан";
+        }
     }
 
     class CRMApplicationMap : ClassMap<CRMApplication>
@@ -29,6 +35,7 @@ namespace DBLib.SQLite.Mappings
             Map(x => x.AcceptingDate);
             Map(x => x.PhoneNumber);
             Map(x => x.Reason);
+            Map(x => x.Status);
             References(x => x.ServicePoint)
                 .Cascade.SaveUpdate();
             References(x => x.Operator)

@@ -8,23 +8,17 @@ namespace CRM
     {
         static void Main(string[] args)
         {
-            using (var session = NhibernateHelper.OpenSession())
-            {
-                Repository<CRMApplication> repository = new Repository<CRMApplication>(session);
-                CRMApplication apl = new CRMApplication();
-                apl.AcceptingDate = DateTime.Now;
-                apl.Applicator = "Вазген";
-                apl.PhoneNumber = "+7-961-407-41-38";
+            About();
+        }
 
-                var list = repository.GetList();
 
-                foreach (var x in list)
-                {
-                    Console.WriteLine($"{x.ID} {x.AcceptingDate} {x.Applicator} {x.PhoneNumber}");
-                }
 
-                repository.Save(apl);
-            }
+
+
+        public static void About()
+        {
+            Console.WriteLine("Консольная версия, с большим функционалом чем MVC");
+            Console.WriteLine("ФДДО МИЭТ 2018 год. Шевцов Е.Р.");
         }
     }
 }

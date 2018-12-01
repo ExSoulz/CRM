@@ -16,6 +16,7 @@
                     <td>Тип оборудования</td>
                     <td>Бренд</td>
                     <td>Модель</td>
+                    <td>Статус</td>
 
                 </tr>
             </thead>
@@ -25,7 +26,18 @@
                     {
                         foreach (var applic in ViewBag.Applications)
                         {
-                <tr>
+                            string color;
+                            if (applic.Status == "Обработан")
+                            {
+                                color = "azure";
+                            }
+                            else
+                            {
+                                color = "red";
+                            }
+
+                <tr style="background-color:@color">
+
                     <td style="padding:5px">   @applic.ID  </td>
                     <td style="padding:5px">   @applic.AcceptingDate  </td>
                     <td style="padding:5px">   @applic.Applicator  </td>
@@ -35,6 +47,7 @@
                     <td style="padding:5px">   @applic.Type.Name  </td>
                     <td style="padding:5px">   @applic.Brand.Name  </td>
                     <td style="padding:5px">   @applic.Model.Name  </td>
+                    <td style="padding:5px">   @applic.Status  </td>
 
                 </tr>
                         }
@@ -121,7 +134,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Модель</span>
                     </div>
-                    <input list="ModelList" name="ModelName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input list="ModelList" name="ModelName" type="text" class="form-control" aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <datalist id="ModelList">
@@ -130,6 +143,7 @@
                         {
                             var repository = new DBLib.Repository<DBLib.SQLite.Mappings.Model>(session);
                             var models = repository.GetList();
+
                             foreach (var mod in models)
                             {
                                 <option value="@mod.Name"></option>
@@ -147,4 +161,9 @@
     </div>
 
 </div>
+
+<script>
+
+
+</script>
 

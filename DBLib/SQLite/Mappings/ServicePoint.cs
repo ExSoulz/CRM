@@ -22,11 +22,9 @@ namespace DBLib.SQLite.Mappings
             Map(x => x.Title);
             Map(x => x.Adress);
             HasMany(x => x.Operators)
-                .Cascade.All()
-                .Fetch.Join();
+                .Cascade.All();
             HasMany(x => x.Applications)
-                .Cascade.All()
-                .Fetch.Join();
+                .Cascade.All();
         }
     }
 }

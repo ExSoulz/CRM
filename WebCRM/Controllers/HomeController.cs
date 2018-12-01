@@ -110,10 +110,16 @@ namespace WebCRM.Controllers
         }
         #endregion
 
+        public ViewResult ApplicationEdit()
+        {
+            return View();
+        }
+
         public ActionResult WrongInput()
         {
             return View();
         }
 
+        
     }
 }
