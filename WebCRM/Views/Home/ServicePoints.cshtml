@@ -1,4 +1,5 @@
-﻿
+﻿@model  IEnumerable<DBLib.SQLite.Mappings.ServicePoint>
+
 @{
     ViewBag.Title = "Сервисные центры";
 }
@@ -22,17 +23,18 @@
                 </thead>
                 <tbody>
                     @{
-                        foreach (var spoint in ViewBag.Spoints)
+                        if (ViewBag.Spoints != null)
                         {
-                    <tr>
-                        <td style="padding:5px">   @spoint.ID  </td>
-                        <td style="padding:5px">   @spoint.Title  </td>
-                        <td style="padding:5px">   @spoint.Adress  </td>
-                        <td style="padding:5px">   @spoint.Operators.Count  </td>
-                        <td style="padding:5px">   @spoint.Applications.Count  </td>
-                    </tr>
+                            foreach (var spoint in ViewBag.Spoints)
+                            {
+                            <tr>
+                                <td style="padding:5px">   @spoint.ID  </td>
+                                <td style="padding:5px">   @spoint.Title  </td>
+                                <td style="padding:5px">   @spoint.Adress  </td>
+                            </tr>
+                                }
+                            }
                         }
-                    }
                 </tbody>
             </table>
         </div>
@@ -48,14 +50,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Название</span>
                     </div>
-                    <input name="Name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input name="Title" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Адрес</span>
                     </div>
-                    <input name="SecondName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input name="Adress" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <div class="input-group input-group-sm mb-3">

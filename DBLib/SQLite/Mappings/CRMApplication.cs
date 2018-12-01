@@ -9,9 +9,10 @@ namespace DBLib.SQLite.Mappings
         public virtual string Applicator { get; set; }
         public virtual DateTime AcceptingDate { get; set; }
         public virtual Operator Operator { get; set; }
+        public virtual ServicePoint ServicePoint { get; set; }
         public virtual string PhoneNumber { get; set; }
         public virtual string Reason { get; set; }
-        public virtual TechType Type { get; set; }
+        public virtual TechType Type { get ; set; }
         public virtual Brand Brand { get; set; }
         public virtual Model Model { get; set; }
     }
@@ -24,13 +25,19 @@ namespace DBLib.SQLite.Mappings
             Map(x => x.Applicator);
             Map(x => x.AcceptingDate);
             Map(x => x.PhoneNumber);
-            HasOne(x => x.Operator)
+            References(x => x.ServicePoint)
                 .Cascade.SaveUpdate();
-            HasOne(x => x.Brand)
+            References(x => x.Operator)
+                .Fetch.Join()
                 .Cascade.SaveUpdate();
-            HasOne(x => x.Type)
+            References(x => x.Brand)
+                .Fetch.Join()
                 .Cascade.SaveUpdate();
-            HasOne(x => x.Model)
+            References(x => x.Type)
+                .Fetch.Join()
+                .Cascade.SaveUpdate();
+            References(x => x.Model)
+                .Fetch.Join()
                 .Cascade.SaveUpdate();
         }
     }

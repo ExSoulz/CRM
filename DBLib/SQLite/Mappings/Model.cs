@@ -18,9 +18,9 @@ namespace DBLib.SQLite.Mappings
         {
             Id(x => x.ID);
             Map(x => x.Name).Unique();
-            HasOne(x => x.Brand)
+            References(x => x.Brand)
                 .Cascade.SaveUpdate();
-            HasOne(x => x.TechType)
+            References(x => x.TechType)
                 .Cascade.SaveUpdate();
         }
     }

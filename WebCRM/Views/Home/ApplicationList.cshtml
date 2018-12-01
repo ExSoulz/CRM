@@ -1,41 +1,96 @@
 ﻿@model  IEnumerable<DBLib.SQLite.Mappings.CRMApplication>
 
-<h1>@ViewBag.Title</h1>
-<h2>Список зарегистрированных заявок</h2>
+<h2>@ViewBag.Title</h2>
 
-<div class="col-md-12">
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <td>ID</td>
-                <td>Дата принятия</td>
-                <td>Клиент</td>
-                <td>Номер телефона</td>
-                <td>Причина</td>
-                <td>Тип оборудования</td>
-                <td>Бренд</td>
-                <td>Модель</td>
-                <td>Заявку принял</td>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var applic in ViewBag.Applications)
-                {
-            <tr>
-                <td style="padding:5px">   @applic.ID  </td>
-                <td style="padding:5px">   @applic.AcceptingDate  </td>
-                <td style="padding:5px">   @applic.Applicator  </td>
-                <td style="padding:5px">   @applic.PhoneNumber  </td>
-                <td style="padding:5px">   @applic.Reason  </td>
-                <td style="padding:5px">   @applic.Type  </td>
-                <td style="padding:5px">   @applic.Brand  </td>
-                <td style="padding:5px">   @applic.Model  </td>
-                <td style="padding:5px">   @applic.Operator  </td>
-            </tr>
+<div class="container-fluid">
+    <div class="col-md-10">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <td>ID</td>
+                    <td>Дата принятия</td>
+                    <td>Клиент</td>
+                    <td>Номер телефона</td>
+                    <td>Причина</td>
+                    <td>Заявку принял</td>
+                    <td>Тип оборудования</td>
+                    <td>Бренд</td>
+                    <td>Модель</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var applic in ViewBag.Applications)
+                    {
+                        <tr>
+                            <td style="padding:5px">   @applic.ID  </td>
+                            <td style="padding:5px">   @applic.AcceptingDate  </td>
+                            <td style="padding:5px">   @applic.Applicator  </td>
+                            <td style="padding:5px">   @applic.PhoneNumber  </td>
+                            <td style="padding:5px">   @applic.Reason  </td>
+                            <td style="padding:5px">   @applic.Operator.FullName  </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     </div>
+
+    <div class="col-md-2">
+
+        <form action="/Home/ApplicationList" method="post" style="margin-top:10%">
+            <h3>Регистрация Заявки</h3>
+            <div class="form-horizontal">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Имя клиента</span>
+                    </div>
+                    <input name="Applicator" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Номер телефона</span>
+                    </div>
+                    <input name="PhoneNumber" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Причина обращения</span>
+                    </div>
+                    <input name="Reason" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Тип техники</span>
+                    </div>
+                    <input name="Type" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Бренд</span>
+                    </div>
+                    <input name="Brand" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Модель</span>
+                    </div>
+                    <input name="Model" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <input type="submit" class="btn-block btn-primary btn-lg btn-block" value="Сохранить" style="margin-top:5%">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
 

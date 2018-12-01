@@ -22,9 +22,10 @@ namespace DBLib.SQLite.Mappings
             Map(x => x.Name);
             Map(x => x.SecondName);
             HasMany(x => x.Applications)
-                .Cascade.All();
-            HasOne(x => x.ServicePoint)
-                .Cascade.All();
+                .Cascade.SaveUpdate();
+            References(x => x.ServicePoint)
+                .Fetch.Join()
+                .Cascade.SaveUpdate();
         }
     }
 }

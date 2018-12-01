@@ -27,6 +27,21 @@ namespace WebCRM.Controllers
             }
                 return View();
         }
+        [HttpPost]
+        public ActionResult ApplicationList(CRMApplication _application)
+        {
+            ViewBag.Title = "Заявки";
+            using (var session = NhibernateHelper.OpenSession())
+            {
+                var employee = new Repository<CRMApplication>(session);
+                _application.Operator = new Repository<Operator>(session).GetEntity(1);
+                _application.ServicePoint = new Repository<ServicePoint>(session).GetEntity(1);
+                _application.AcceptingDate = DateTime.Now;
+                employee.Save(_application);
+            }
+
+            return View();
+        }
         #endregion
 
         #region Сотрудники
@@ -49,19 +64,18 @@ namespace WebCRM.Controllers
             using (var session = NhibernateHelper.OpenSession())
             {
                 var employee = new Repository<Operator>(session);
-                var servicepoints = new Repository<ServicePoint>(session).GetList();
-                _operator.ServicePoint = new Repository<ServicePoint>(session).GetEntity(new Random(DateTime.Now.Millisecond).Next(0, servicepoints.Count - 1));
+                _operator.ServicePoint = new Repository<ServicePoint>(session).GetEntity(1);
                 employee.Save(_operator);
             }
 
-            return View();
+            return Employees();
         }
         #endregion
 
         #region Сервисные центры
         public ActionResult ServicePoints()
         {
-            ViewBag.Title = "Сотрудники";
+            ViewBag.Title = "Сервисные центры";
             using (var session = NhibernateHelper.OpenSession())
             {
                 Repository<ServicePoint> repository = new Repository<ServicePoint>(session);
@@ -80,7 +94,7 @@ namespace WebCRM.Controllers
                 var sp = new Repository<ServicePoint>(session);
                 sp.Save(_servicePoint);
             }
-            return View();
+            return ServicePoints();
         }
         #endregion
     }

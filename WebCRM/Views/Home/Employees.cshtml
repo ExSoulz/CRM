@@ -1,10 +1,7 @@
 ﻿@model  IEnumerable<DBLib.SQLite.Mappings.Operator>
 
-@{
-    ViewBag.Title = "Employees";
-}
 
-<h2>Employees</h2>
+<h2>@ViewBag.Title</h2>
 
 <div class="container-fluid">
 
@@ -17,7 +14,7 @@
                         <td>ID</td>
                         <td>Имя</td>
                         <td>Фамилия</td>
-                        <td>Количество заявок</td>
+                        <td>Место работы</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,8 +24,8 @@
                     <tr>
                         <td style="padding:5px">   @employee.ID  </td>
                         <td style="padding:5px">   @employee.Name  </td>
-                        <td style="padding:5px">   @employee>SecondName  </td>
-                        <td style="padding:5px">   @employee.Applications.Count  </td>
+                        <td style="padding:5px">   @employee.SecondName  </td>
+                        <td style="padding:5px">   @employee.ServicePoint.Title  </td>
                     </tr>
                         }
                     }
