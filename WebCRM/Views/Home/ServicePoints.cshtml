@@ -27,11 +27,13 @@
                         {
                             foreach (var spoint in ViewBag.Spoints)
                             {
-                            <tr>
-                                <td style="padding:5px">   @spoint.ID  </td>
-                                <td style="padding:5px">   @spoint.Title  </td>
-                                <td style="padding:5px">   @spoint.Adress  </td>
-                            </tr>
+                    <tr>
+                        <td style="padding:5px">   @spoint.ID  </td>
+                        <td style="padding:5px">   @spoint.Title  </td>
+                        <td style="padding:5px">   @spoint.Adress  </td>
+                        <td style="padding:5px">   @spoint.Applications.Count  </td>
+                        <td style="padding:5px">   @spoint.Operators.Count  </td>
+                    </tr>
                                 }
                             }
                         }

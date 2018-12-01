@@ -21,16 +21,27 @@
             </thead>
             <tbody>
                 @{
-                    foreach (var applic in ViewBag.Applications)
+                    try
                     {
-                        <tr>
-                            <td style="padding:5px">   @applic.ID  </td>
-                            <td style="padding:5px">   @applic.AcceptingDate  </td>
-                            <td style="padding:5px">   @applic.Applicator  </td>
-                            <td style="padding:5px">   @applic.PhoneNumber  </td>
-                            <td style="padding:5px">   @applic.Reason  </td>
-                            <td style="padding:5px">   @applic.Operator.FullName  </td>
-                        </tr>
+                        foreach (var applic in ViewBag.Applications)
+                        {
+                <tr>
+                    <td style="padding:5px">   @applic.ID  </td>
+                    <td style="padding:5px">   @applic.AcceptingDate  </td>
+                    <td style="padding:5px">   @applic.Applicator  </td>
+                    <td style="padding:5px">   @applic.PhoneNumber  </td>
+                    <td style="padding:5px">   @applic.Reason  </td>
+                    <td style="padding:5px">   @applic.Operator.FullName  </td>
+                    <td style="padding:5px">   @applic.Type.Name  </td>
+                    <td style="padding:5px">   @applic.Brand.Name  </td>
+                    <td style="padding:5px">   @applic.Model.Name  </td>
+
+                </tr>
+                        }
+                    }
+                    catch
+                    {
+                        @Html.Action("WrongInput", "Home");
                     }
                 }
             </tbody>
@@ -67,22 +78,65 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Тип техники</span>
                     </div>
-                    <input name="Type" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input list="TechType" name="TypeName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
+
+                <datalist id="TechType">
+                    @{
+                        using (var session = DBLib.NhibernateHelper.OpenSession())
+                        {
+                            var repository = new DBLib.Repository<DBLib.SQLite.Mappings.TechType>(session);
+                            var Types = repository.GetList();
+                            foreach (var _type in Types)
+                            {
+                                <option value="@_type.Name"></option>
+                            }
+                        }
+                    }
+                </datalist>
 
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Бренд</span>
                     </div>
-                    <input name="Brand" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input list="BrandList" name="BrandName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
+
+                <datalist id="BrandList">
+                    @{
+                        using (var session = DBLib.NhibernateHelper.OpenSession())
+                        {
+                            var repository = new DBLib.Repository<DBLib.SQLite.Mappings.Brand>(session);
+                            var brands = repository.GetList();
+                            foreach (var brand in brands)
+                            {
+                                <option value="@brand.Name"></option>
+                            }
+                        }
+                    }
+                </datalist>
+
 
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Модель</span>
                     </div>
-                    <input name="Model" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input list="ModelList" name="ModelName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
+
+                <datalist id="ModelList">
+                    @{
+                        using (var session = DBLib.NhibernateHelper.OpenSession())
+                        {
+                            var repository = new DBLib.Repository<DBLib.SQLite.Mappings.Model>(session);
+                            var models = repository.GetList();
+                            foreach (var mod in models)
+                            {
+                                <option value="@mod.Name"></option>
+                            }
+                        }
+                    }
+                </datalist>
 
                 <div class="input-group input-group-sm mb-3">
                     <input type="submit" class="btn-block btn-primary btn-lg btn-block" value="Сохранить" style="margin-top:5%">

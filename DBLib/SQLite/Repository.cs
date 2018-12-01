@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NHibernate;
+using NHibernate.Criterion;
 
 namespace DBLib
 {
@@ -11,6 +12,7 @@ namespace DBLib
         T GetEntity(int id);
         void Save(T entity);
         void Delete(int id);
+        List<T> GetListByValue(string parameter,string criteria);
     }
 
     public class Repository<T> : IRepository<T>
@@ -42,6 +44,13 @@ namespace DBLib
         public List<T> GetList()
         {
             return new List<T>(session.CreateCriteria(typeof(T)).List<T>());
+        }
+
+        public List<T> GetListByValue(string parameter, string criteria)
+        {
+            return session.CreateCriteria<T>()
+                .Add(Expression.Like(parameter, criteria, MatchMode.Exact))
+                .List<T>() as List<T>;
         }
 
         public void Dispose()

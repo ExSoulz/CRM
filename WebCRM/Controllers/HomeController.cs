@@ -25,22 +25,34 @@ namespace WebCRM.Controllers
                 var list = repository.GetList();
                 ViewBag.Applications = list;
             }
-                return View();
+            return View();
         }
         [HttpPost]
         public ActionResult ApplicationList(CRMApplication _application)
         {
-            ViewBag.Title = "Заявки";
-            using (var session = NhibernateHelper.OpenSession())
+            try
             {
-                var employee = new Repository<CRMApplication>(session);
-                _application.Operator = new Repository<Operator>(session).GetEntity(1);
-                _application.ServicePoint = new Repository<ServicePoint>(session).GetEntity(1);
-                _application.AcceptingDate = DateTime.Now;
-                employee.Save(_application);
-            }
+                ViewBag.Title = "Заявки";
+                using (var session = NhibernateHelper.OpenSession())
+                {
+                    var repository = new Repository<CRMApplication>(session);
+                    var employee = new Repository<Operator>(session).GetEntity(1);
 
-            return View();
+                    _application.Type = new Repository<TechType>(session).GetListByValue("Name", _application.TypeName)[0];
+                    _application.Model = new Repository<Model>(session).GetListByValue("Name", _application.ModelName)[0];
+                    _application.Brand = new Repository<Brand>(session).GetListByValue("Name", _application.BrandName)[0];
+                    _application.Operator = employee;
+                    _application.ServicePoint = employee.ServicePoint;
+                    _application.AcceptingDate = DateTime.Now;
+                    repository.Save(_application);
+                }
+
+                return ApplicationList();
+            }
+            catch
+            {
+                return WrongInput();
+            }
         }
         #endregion
 
@@ -97,5 +109,11 @@ namespace WebCRM.Controllers
             return ServicePoints();
         }
         #endregion
+
+        public ActionResult WrongInput()
+        {
+            return View();
+        }
+
     }
 }

@@ -12,8 +12,11 @@ namespace DBLib.SQLite.Mappings
         public virtual ServicePoint ServicePoint { get; set; }
         public virtual string PhoneNumber { get; set; }
         public virtual string Reason { get; set; }
+        public virtual string TypeName { get; set; }
         public virtual TechType Type { get ; set; }
+        public virtual string BrandName { get; set; }
         public virtual Brand Brand { get; set; }
+        public virtual string ModelName { get; set; }
         public virtual Model Model { get; set; }
     }
 
@@ -25,6 +28,7 @@ namespace DBLib.SQLite.Mappings
             Map(x => x.Applicator);
             Map(x => x.AcceptingDate);
             Map(x => x.PhoneNumber);
+            Map(x => x.Reason);
             References(x => x.ServicePoint)
                 .Cascade.SaveUpdate();
             References(x => x.Operator)
@@ -39,6 +43,7 @@ namespace DBLib.SQLite.Mappings
             References(x => x.Model)
                 .Fetch.Join()
                 .Cascade.SaveUpdate();
+
         }
     }
 
