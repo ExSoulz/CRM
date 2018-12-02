@@ -1,6 +1,7 @@
 ﻿using System;
 using DBLib;
 using DBLib.SQLite.Mappings;
+using CRM.Menu;
 
 namespace CRM
 {
@@ -8,17 +9,8 @@ namespace CRM
     {
         static void Main(string[] args)
         {
-            About();
+            ProgramMenu.MainPage();
         }
 
-
-
-
-
-        public static void About()
-        {
-            Console.WriteLine("Консольная версия, с большим функционалом чем MVC");
-            Console.WriteLine("ФДДО МИЭТ 2018 год. Шевцов Е.Р.");
-        }
     }
 }

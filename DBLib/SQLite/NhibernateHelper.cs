@@ -13,8 +13,8 @@ namespace DBLib
         {
             ISessionFactory sessionFactory = Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.ConnectionString($"Data Source={AppDomain.CurrentDomain.BaseDirectory}/CRMdb.db;Version=3;")
+                //.ShowSql()
                 )
-                //.ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CRMApplication>())
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
                 .BuildSessionFactory();

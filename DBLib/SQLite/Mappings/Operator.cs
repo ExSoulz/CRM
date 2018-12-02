@@ -12,6 +12,11 @@ namespace DBLib.SQLite.Mappings
         public virtual string FullName { get { return $"{Name} {SecondName}"; } }
         public virtual ServicePoint ServicePoint { get; set; }
         public virtual ISet<CRMApplication> Applications { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.ID} {this.Name} {this.SecondName} {this.ServicePoint.Title} {this.Applications.Count}";
+        }
     }
 
     class OpeatorMap : ClassMap<Operator>
@@ -22,10 +27,10 @@ namespace DBLib.SQLite.Mappings
             Map(x => x.Name);
             Map(x => x.SecondName);
             HasMany(x => x.Applications)
-                .Cascade.SaveUpdate();
+                .Cascade.AllDeleteOrphan();
             References(x => x.ServicePoint)
                 .Fetch.Join()
-                .Cascade.SaveUpdate();
+                .Cascade.All();
         }
     }
 }

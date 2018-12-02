@@ -33,7 +33,15 @@ namespace DBLib
 
         public void Delete(int id)
         {
-            session.Delete(id);
+            try
+            {
+                session.Delete(session.Get<T>(id));
+                session.Flush();
+            }
+            catch 
+            {
+                Console.WriteLine("Невозможно удалить объект, который имеет связи в базе");
+            }
         }
 
         public T GetEntity(int id)

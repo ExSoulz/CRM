@@ -10,6 +10,11 @@ namespace DBLib.SQLite.Mappings
         public virtual string Name { get; set; }
         public virtual ISet<Model> Models { get; set; }
 
+        public override string ToString()
+        {
+            return $"{this.ID} {this.Name} {this.Models.Count}";
+        }
+
     }
 
     class TechTypeMap : ClassMap<TechType>
@@ -19,7 +24,7 @@ namespace DBLib.SQLite.Mappings
             Id(x => x.ID);
             Map(x => x.Name).Unique();
             HasMany(x => x.Models)
-                .Cascade.All()
+                .Cascade.AllDeleteOrphan()
                 .Inverse();
         }
     }

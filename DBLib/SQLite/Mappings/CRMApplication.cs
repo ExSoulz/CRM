@@ -20,6 +20,11 @@ namespace DBLib.SQLite.Mappings
         public virtual Model Model { get; set; }
         public virtual string Status { get; set; }
 
+        public override string ToString()
+        {
+            return $"{this.ID}   {this.Applicator}    {AcceptingDate.ToString()}   {this.Operator.FullName}    {this.ServicePoint.Title}    {this.PhoneNumber}    {this.Reason}    {this.Type.Name}    {this.Brand.Name}    {this.Model.Name}    {this.Status}";
+        }
+
         public CRMApplication()
         {
             Status = "Обработан";
@@ -37,19 +42,19 @@ namespace DBLib.SQLite.Mappings
             Map(x => x.Reason);
             Map(x => x.Status);
             References(x => x.ServicePoint)
-                .Cascade.SaveUpdate();
+                .Cascade.All();
             References(x => x.Operator)
                 .Fetch.Join()
-                .Cascade.SaveUpdate();
+                .Cascade.All();
             References(x => x.Brand)
                 .Fetch.Join()
-                .Cascade.SaveUpdate();
+                .Cascade.All();
             References(x => x.Type)
                 .Fetch.Join()
-                .Cascade.SaveUpdate();
+                .Cascade.All();
             References(x => x.Model)
                 .Fetch.Join()
-                .Cascade.SaveUpdate();
+                .Cascade.All();
 
         }
     }

@@ -10,6 +10,12 @@ namespace DBLib.SQLite.Mappings
         public virtual string Name { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual TechType TechType { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.ID} {this.Name} {this.Brand.Name} {this.TechType.Name}";
+        }
+
     }
 
     class ModelMap : ClassMap<Model>
@@ -19,9 +25,9 @@ namespace DBLib.SQLite.Mappings
             Id(x => x.ID);
             Map(x => x.Name).Unique();
             References(x => x.Brand)
-                .Cascade.SaveUpdate();
+                .Cascade.All();
             References(x => x.TechType)
-                .Cascade.SaveUpdate();
+                .Cascade.All();
         }
     }
 }
